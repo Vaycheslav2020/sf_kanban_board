@@ -1,0 +1,27 @@
+.button {
+  min-width: 102px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 5px;
+  margin-top: 15px;
+  padding: 6px;
+  font-size: inherit;
+  color: #5e6c84;
+  font-family: inherit;
+  transition: all 300ms ease;
+  &:hover:not([disabled]) {
+    background-color: #ffffff;
+    color: #3acc35;
+  }
+
+  &-icon {
+    margin-right: 4px;
+  }
+
+  &-submit {
+    background: #0079bf;
+    color: #ffffff;
+  }
+}

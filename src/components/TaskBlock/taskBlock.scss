@@ -1,0 +1,17 @@
+.task {
+  &-block {
+    padding: 7px 8px;
+    background: #ffffff;
+    border-radius: 5px;
+    margin: 15px 0;
+    cursor: pointer;
+  }
+
+  &-name {
+    user-select: none;
+  }
+
+  &-description {
+    display: none;
+  }
+}
