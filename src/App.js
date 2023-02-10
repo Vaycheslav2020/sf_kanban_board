@@ -4,25 +4,7 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-
-const dataMock = [
-  {
-    title: "Backlog",
-    issues: [],
-  },
-  {
-    title: "Ready",
-    issues: [],
-  },
-  {
-    title: "In Progress",
-    issues: [],
-  },
-  {
-    title: "Finished",
-    issues: [],
-  },
-];
+import dataMock from "./data-mock.json"
 
 class App extends React.Component {
   constructor(props) {
