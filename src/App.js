@@ -8,118 +8,19 @@ import Footer from "./components/Footer/Footer";
 const dataMock = [
   {
     title: "Backlog",
-    issues: [
-      {
-        id: "12345",
-        name: "Sprint bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "234t56",
-        name: "Sprint bugfix",
-        description: "Fix all the bugs",
-      },
-    ],
+    issues: [],
   },
   {
     title: "Ready",
-    issues: [
-      {
-        id: "12345j",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "2y3456",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "2y345d6",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "2y345sd6",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "2yx345sd6",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "2x345sd6",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "234u56j",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "w234u56j",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "w234u56jd",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "234y56j",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "234t56j",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "2y3456j",
-        name: "Ready bugfix",
-        description: "Fix all the bugs",
-      },
-    ],
+    issues: [],
   },
   {
     title: "In Progress",
-    issues: [
-      {
-        id: "12345g",
-        name: "Progress bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "234u56g",
-        name: "Progress bugfix",
-        description: "Fix all the bugs",
-      },
-    ],
+    issues: [],
   },
   {
     title: "Finished",
-    issues: [
-      {
-        id: "123455",
-        name: "Finished bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "234u564",
-        name: "Finished bugfix",
-        description: "Fix all the bugs",
-      },
-      {
-        id: "234y563",
-        name: "Finished bugfix",
-        description: "Fix all the bugs",
-      },
-    ],
+    issues: [],
   },
 ];
 
@@ -129,6 +30,7 @@ class App extends React.Component {
     this.state = {
       data: dataMock,
       addingTask: false,
+      movingTaskId: "",
       newTask: {
         id: uniqid(),
         name: "",
@@ -137,6 +39,27 @@ class App extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
   }
+
+  onClick = (...arg) => {
+    const { data } = this.state;
+    const title = arg[0];
+    const submit = arg[1];
+    let value;
+    if (submit) {
+      if (title === data[0].title) {
+        this.addTask(title);
+      } else {
+        this.moveTask(title);
+      }
+      value = false;
+    } else {
+      value = title;
+    }
+
+    this.setState({
+      addingTask: value,
+    });
+  };
 
   handleInput = (event) => {
     const { target } = event;
@@ -147,6 +70,47 @@ class App extends React.Component {
       newTask: Object.assign(this.state.newTask, {
         [nameTg]: value,
       }),
+    });
+  };
+
+  handleSelect = (event) => {
+    const { target } = event;
+    const value = target.value;
+
+    this.setState({
+      movingTaskId: value,
+    });
+  };
+
+  moveTask = (title) => {
+    const { data, movingTaskId } = this.state;
+    let moveTask;
+    if (movingTaskId === "") {
+      return;
+    }
+
+    const newData = data.map((item) => {
+      item.issues.map((task) => {
+        if (task.id === movingTaskId) {
+          return (moveTask = task);
+        }
+      });
+      if (item.title === title) {
+        return Object.assign(
+          { ...item },
+          { issues: item.issues.concat(moveTask) }
+        );
+      } else {
+        return Object.assign(
+          { ...item },
+          { issues: item.issues.filter((task) => task.id !== movingTaskId) }
+        );
+      }
+    });
+
+    this.setState({
+      data: newData,
+      movingTaskId: "",
     });
   };
 
@@ -179,22 +143,6 @@ class App extends React.Component {
     });
   };
 
-  onClick = (...arg) => {
-    const submit = arg[1];
-    const title = arg[0];
-    let value;
-    if (submit) {
-      this.addTask(title);
-      value = false;
-    } else {
-      value = title;
-    }
-
-    this.setState({
-      addingTask: value,
-    });
-  };
-
   render() {
     const { data, newTask, addingTask } = this.state;
     return (
@@ -205,6 +153,7 @@ class App extends React.Component {
           newTask={newTask}
           addingTask={addingTask}
           handleInput={this.handleInput}
+          handleSelect={this.handleSelect}
           onClick={this.onClick}
         />
         <Footer

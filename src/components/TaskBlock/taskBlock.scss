@@ -1,10 +1,15 @@
 .task {
   &-block {
     padding: 7px 8px;
-    background: #ffffff;
+    background-color: #ffffff;
     border-radius: 5px;
     margin: 15px 0;
     cursor: pointer;
+    transition: 150ms linear;
+
+    &:hover {
+      background-color: #dedede;
+    }
   }
 
   &-name {

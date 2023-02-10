@@ -1,13 +1,13 @@
 
-# Available Scripts
+# Доступные скрипты
 
-In the project directory, you can run:
+В каталоге проекта вы можете запустить:
 
 ## `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Запускает приложение в режиме разработки.
+Открыть http://localhost:3000 чтобы просмотреть его в вашем браузере.
 
 ## `npm run build`
 
-Builds the app for production to the `build` folder.\
+сборка приложения
