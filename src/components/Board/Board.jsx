@@ -1,15 +1,15 @@
-import "./card.scss";
+import "./Board.scss";
 import TaskBlock from "../TaskBlock/TaskBlock";
-import CardButton from "../CardButton/CardButton";
+import BoardButton from "../BoardButton/BoardButton";
 import CreateTask from "../CreateTask/CreateTask";
 import DropdownTask from "../DropdownTask/DropdownTask";
 
-const Card = (props) => {
+const Board = (props) => {
   const { title, data, addingTask } = props;
   return (
-    <div className="card">
-      <h3 className="card-title">{title}</h3>
-      <div className="card-item-wrapper">
+    <div className="board">
+      <h3 className="board-title">{title}</h3>
+      <div className="board-item-wrapper">
         {data
           ? data.map((item) => {
               if (item.title === title) {
@@ -26,10 +26,10 @@ const Card = (props) => {
             <DropdownTask {...props} />
           )
         ) : null}
-        <CardButton {...props} />
+        <BoardButton {...props} />
       </div>
     </div>
   );
 };
 
-export default Card;
+export default Board;

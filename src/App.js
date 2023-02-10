@@ -4,13 +4,14 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import dataMock from "./data-mock.json"
+import data from "./data-mock.json";
+import { filterToMoveTask, addingTaskFunction } from "./utils";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: dataMock,
+      data: data,
       addingTask: false,
       movingTaskId: "",
       newTask: {
@@ -19,13 +20,10 @@ class App extends React.Component {
         description: "",
       },
     };
-    this.handleInput = this.handleInput.bind(this);
   }
 
-  onClick = (...arg) => {
+  onClick = (title, submit) => {
     const { data } = this.state;
-    const title = arg[0];
-    const submit = arg[1];
     let value;
     if (submit) {
       if (title === data[0].title) {
@@ -37,7 +35,6 @@ class App extends React.Component {
     } else {
       value = title;
     }
-
     this.setState({
       addingTask: value,
     });
@@ -46,11 +43,11 @@ class App extends React.Component {
   handleInput = (event) => {
     const { target } = event;
     const value = target.value;
-    const nameTg = target.name;
+    const nameKey = target.name;
 
     this.setState({
       newTask: Object.assign(this.state.newTask, {
-        [nameTg]: value,
+        [nameKey]: value,
       }),
     });
   };
@@ -66,57 +63,19 @@ class App extends React.Component {
 
   moveTask = (title) => {
     const { data, movingTaskId } = this.state;
-    let moveTask;
     if (movingTaskId === "") {
       return;
     }
-
-    const newData = data.map((item) => {
-      item.issues.map((task) => {
-        if (task.id === movingTaskId) {
-          return (moveTask = task);
-        }
-      });
-      if (item.title === title) {
-        return Object.assign(
-          { ...item },
-          { issues: item.issues.concat(moveTask) }
-        );
-      } else {
-        return Object.assign(
-          { ...item },
-          { issues: item.issues.filter((task) => task.id !== movingTaskId) }
-        );
-      }
-    });
-
     this.setState({
-      data: newData,
+      data: filterToMoveTask(data, title, movingTaskId),
       movingTaskId: "",
     });
   };
 
   addTask = (title) => {
     const { data, newTask } = this.state;
-    const nameText = newTask.name.replace(/^\s+/, "").replace(/\s+$/, "");
-    let newData;
-
-    if (nameText === "") {
-      newData = data;
-    } else {
-      newData = data.map((item) => {
-        if (item.title === title) {
-          return Object.assign(
-            { ...item },
-            { issues: item.issues.concat(newTask) }
-          );
-        }
-        return item;
-      });
-    }
-
     this.setState({
-      data: newData,
+      data: addingTaskFunction(title, newTask, data),
       newTask: {
         id: uniqid(),
         name: "",

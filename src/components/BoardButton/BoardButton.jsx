@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ReactComponent as IconPlus } from "./plus.svg";
-import "./CardButton.scss";
+import "./BoardButton.scss";
 
-const CardButton = (props) => {
+const BoardButton = (props) => {
   const { title, addingTask, onClick, prevTaskList } = props;
   const [submit, setSubmit] = useState(false);
 
@@ -22,10 +22,10 @@ const CardButton = (props) => {
       ) : (
         <>
           <IconPlus className="button-icon" />
-          <span>Add card</span>
+          <span>Add Board</span>
         </>
       )}
     </button>
   );
 };
-export default CardButton;
+export default BoardButton;
