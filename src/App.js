@@ -4,14 +4,17 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import data from "./data-mock.json";
+import emptyData from "./data-mock.json";
 import { filterToMoveTask, addingTaskFunction } from "./utils";
+
+const initialData =
+  JSON.parse(window.localStorage.getItem("data")) || emptyData;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: data,
+      data: initialData,
       addingTask: false,
       movingTaskId: "",
       newTask: {
@@ -20,6 +23,11 @@ class App extends React.Component {
         description: "",
       },
     };
+  }
+
+  componentDidUpdate() {
+    const { data } = this.state;
+    window.localStorage.setItem("data", JSON.stringify(data));
   }
 
   onClick = (title, submit) => {
