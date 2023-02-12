@@ -1,3 +1,5 @@
+@import "./mixin.scss";
+
 * {
   box-sizing: border-box;
   &::-webkit-scrollbar {
@@ -23,6 +25,9 @@ body {
   font-family: -apple-system, "Roboto", "Oxygen", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @include _576 {
+    font-size: 14px;
+  }
 }
 
 h1,
