@@ -1,18 +1,17 @@
-import "./DropdownTask.scss";
+import css from "./DropdownTask.module.scss";
 import React from "react";
 import { ReactComponent as Arrow } from "./arrow.svg";
 
 const DropdownTask = (props) => {
   const { prevTaskList, handleSelect } = props;
   return (
-    <div className="dropdown">
-      <select className="dropdown-select" onChange={handleSelect}>
+    <div className={css.dropdown}>
+      <select className={css.select} onChange={handleSelect}>
         <option value=""></option>
         {prevTaskList
           ? prevTaskList.map((task) => {
               return (
                 <option
-                  className="dropdown-option"
                   key={task.id}
                   value={task.id}
                 >
@@ -22,7 +21,7 @@ const DropdownTask = (props) => {
             })
           : null}
       </select>
-      <Arrow className="dropdown-arrow" />
+      <Arrow className={css.arrow} />
     </div>
   );
 };

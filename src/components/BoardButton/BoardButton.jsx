@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ReactComponent as IconPlus } from "./plus.svg";
-import "./BoardButton.scss";
+import css from "./BoardButton.module.scss";
 
 const BoardButton = (props) => {
   const { title, addingTask, onClick, prevTaskList } = props;
@@ -13,15 +13,15 @@ const BoardButton = (props) => {
 
   return (
     <button
-      className={submit ? "button button-submit" : "button"}
+      className={submit ?  css.buttonSubmit + " " + css.button : css.button}
       onClick={handleClick}
-      disabled={addingTask && !submit || Boolean(prevTaskList.length < 1)}
+      disabled={(addingTask && !submit) || Boolean(prevTaskList.length < 1)}
     >
       {submit ? (
         "submit"
       ) : (
         <>
-          <IconPlus className="button-icon" />
+          <IconPlus className={css.icon} />
           <span>Add Board</span>
         </>
       )}

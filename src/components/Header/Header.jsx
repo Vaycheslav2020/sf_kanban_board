@@ -1,8 +1,8 @@
-import "./header.scss"
+import css from "./Header.module.scss"
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className={css.header}>
       <span>Awesome Kanban Board</span>
       <span>jjhh</span>
     </header>

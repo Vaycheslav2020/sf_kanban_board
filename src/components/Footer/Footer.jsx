@@ -1,8 +1,8 @@
-import "./footer.scss";
+import css from "./Footer.module.scss";
 
 const Footer = ({ active, finished }) => {
   return (
-    <footer className="footer">
+    <footer className={css.footer}>
       <div className="task-info">
         <span>Active tasks: {active} </span>
         <span>Finished tasks: {finished}</span>

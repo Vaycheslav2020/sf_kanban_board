@@ -1,13 +1,13 @@
-import "./CreateTask.scss";
+import css from "./CreateTask.module.scss";
 
 const CreateTask = (props) => {
   const { newTask, handleInput } = props;
   return (
-    <form className="task-block__create">
-      <label className="task-label">
+    <form className={css.createTask}>
+      <label className={css.label}>
         <input
           name="name"
-          className="task-input"
+          className={css.input}
           // placeholder="enter the name of the task"
           placeholder="_____________________________________________________________________________________"
           onChange={handleInput}
@@ -16,7 +16,7 @@ const CreateTask = (props) => {
       </label>
       <textarea
         name="description"
-        className="task-textarea"
+        className={css.textarea}
         placeholder="add a description?"
         onChange={handleInput}
         value={newTask.description}

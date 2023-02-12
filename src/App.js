@@ -1,6 +1,6 @@
 import React from "react";
 import uniqid from "uniqid";
-import "./App.scss";
+import css from "./App.module.scss";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
@@ -95,7 +95,7 @@ class App extends React.Component {
   render() {
     const { data, newTask, addingTask } = this.state;
     return (
-      <div className="App">
+      <div className={css.App}>
         <Header />
         <Main
           data={data}
