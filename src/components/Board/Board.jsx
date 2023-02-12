@@ -14,7 +14,7 @@ const Board = (props) => {
           ? data.map((item) => {
               if (item.title === title) {
                 return item.issues.map((task) => {
-                  return <TaskBlock key={task.id} task={task} />;
+                  return <TaskBlock key={task.id} task={task} {...props} />;
                 });
               }
             })

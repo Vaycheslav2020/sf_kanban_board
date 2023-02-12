@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import emptyData from "./data-mock.json";
-import { filterToMoveTask, addingTaskFunction } from "./utils";
+import { filterToMoveTask, addingTaskFunction, deleteTask } from "./utils";
 
 const initialData =
   JSON.parse(window.localStorage.getItem("data")) || emptyData;
@@ -92,6 +92,13 @@ class App extends React.Component {
     });
   };
 
+  deletingTask = (id) => {
+    const { data } = this.state
+    this.setState({
+      data: deleteTask(data , id),
+    });
+  };
+
   render() {
     const { data, newTask, addingTask } = this.state;
     return (
@@ -104,6 +111,7 @@ class App extends React.Component {
           handleInput={this.handleInput}
           handleSelect={this.handleSelect}
           onClick={this.onClick}
+          deletingTask={this.deletingTask}
         />
         <Footer
           active={this.state.data[2].issues.length}

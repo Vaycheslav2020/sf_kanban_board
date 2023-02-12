@@ -21,6 +21,16 @@ const filterToMoveTask = (data, title, movingTaskId) => {
   return newData;
 };
 
+const deleteTask = (data, id) => {
+  const newData = data.map((item) => {
+    return Object.assign(
+      { ...item },
+      { issues: item.issues.filter((task) => task.id !== id) }
+    );
+  });
+  return newData;
+};
+
 const addingTaskFunction = (title, newTask, data) => {
   const nameText = newTask.name.replace(/^\s+/, "").replace(/\s+$/, "");
   let newAddData;
@@ -39,4 +49,4 @@ const addingTaskFunction = (title, newTask, data) => {
   }
   return newAddData;
 };
-export { filterToMoveTask, addingTaskFunction };
+export { filterToMoveTask, addingTaskFunction, deleteTask };
