@@ -1,15 +1,17 @@
 import css from "./TaskBlock.module.scss";
 import DeleteButton from "../DeleteButton/DeleteButton";
+import { Link } from "react-router-dom";
 
-const TaskBlock = ({ task, deletingTask }) => {
+const TaskBlock = (props) => {
+  const { task, deletingTask } = props
   return (
-    <div id={task.id} className={css.task} title="click to open the task">
+    <Link to={`/${task.id}`} id={task.id} className={css.task} title="click to open the task">
       <div className={css.taskGroup}>
-        <h4 className={css.name}>{task.name}</h4>
-        <DeleteButton deletingTask={deletingTask} taskId={task.id} />
+        <span className={css.name}>{task.name}</span>
+        <DeleteButton deletingTask={deletingTask} taskId={task.id} {...props} />
       </div>
       <div className={css.description}>{task.description}</div>
-    </div>
+    </Link>
   );
 };
 

@@ -2,7 +2,8 @@ import React from "react";
 import css from "./DeleteButton.module.scss";
 import { ReactComponent as Icon } from "./icon.svg";
 
-const DeleteButton = ({ deletingTask, taskId }) => {
+const DeleteButton = (props) => {
+  const { deletingTask, taskId, addingTask } = props;
   return (
     <button
       className={css.button}
@@ -10,6 +11,7 @@ const DeleteButton = ({ deletingTask, taskId }) => {
         deletingTask(taskId);
       }}
       title="delete this task"
+      disabled={addingTask}
     >
       <Icon />
     </button>
