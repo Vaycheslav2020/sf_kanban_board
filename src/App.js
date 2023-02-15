@@ -114,7 +114,7 @@ class App extends React.Component {
           deletingTask={this.deletingTask}
         />
         <Footer
-          active={this.state.data[2].issues.length}
+          active={this.state.data[0].issues.length}
           finished={this.state.data[3].issues.length}
         />
       </div>
