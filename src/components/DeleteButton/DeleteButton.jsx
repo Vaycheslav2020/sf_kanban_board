@@ -7,7 +7,8 @@ const DeleteButton = (props) => {
   return (
     <button
       className={css.button}
-      onClick={() => {
+      onClick={(event) => {
+        event.stopPropagation();
         deletingTask(taskId);
       }}
       title="delete this task"

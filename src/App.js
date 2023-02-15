@@ -92,7 +92,7 @@ class App extends React.Component {
     });
   };
 
-  deletingTask = (id) => {
+  deletingTask = (id, event) => {
     const { data } = this.state
     this.setState({
       data: deleteTask(data , id),

@@ -1,6 +1,5 @@
 .task {
   display: block;
-  padding: 7px 8px;
   background-color: #ffffff;
   border-radius: 5px;
   margin: 15px 0;
@@ -21,7 +20,13 @@
 }
 
 .name {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   user-select: none;
+  text-decoration: none;
+  color: inherit;
+  padding: 7px 8px;
 }
 
 .description {

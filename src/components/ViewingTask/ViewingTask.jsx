@@ -5,18 +5,17 @@ import css from "./ViewingTask.module.scss";
 
 const ViewingTask = (props) => {
   const { data } = props;
+  let task;
 
   const { taskId } = useParams();
-  const task = data.map((item) => {
-    return Object.assign(
-      item.issues.map((task) => {
-        if (task.id === taskId) return Object.assign(task);
-      })
-    );
-    return task
+  data.map((item) => {
+    const { issues } = item;
+    if (issues.length) {
+      issues.map((itm) => {
+        if (itm.id === taskId) task = itm;
+      });
+    }
   });
-
-  console.log(task);
 
   return (
     <div id={task.id} className={css.viewingTask}>
