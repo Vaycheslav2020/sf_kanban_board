@@ -4,8 +4,26 @@ import css from "./App.module.scss";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import emptyData from "./data-mock.json";
 import { filterToMoveTask, addingTaskFunction, deleteTask } from "./utils";
+
+const emptyData = [
+  {
+    title: "Backlog",
+    issues: []
+  },
+  {
+    title: "Ready",
+    issues: []
+  },
+  {
+    title: "In Progress",
+    issues: []
+  },
+  {
+    title: "Finished",
+    issues: []
+  }
+]
 
 const initialData =
   JSON.parse(window.localStorage.getItem("data")) || emptyData;
@@ -92,7 +110,7 @@ class App extends React.Component {
     });
   };
 
-  deletingTask = (id, event) => {
+  deletingTask = (id) => {
     const { data } = this.state;
     this.setState({
       data: deleteTask(data, id),
@@ -104,7 +122,7 @@ class App extends React.Component {
     const value = target.value;
     const {data} = this.state
 
-    const newDescr = data.map((item) => {
+    const newDataSetDescription = data.map((item) => {
       return Object.assign(
         { ...item },
         { issues: item.issues.map((task) => {
@@ -117,7 +135,7 @@ class App extends React.Component {
     });
 
     this.setState({
-      data: newDescr,
+      data: newDataSetDescription,
     });
   };
 
