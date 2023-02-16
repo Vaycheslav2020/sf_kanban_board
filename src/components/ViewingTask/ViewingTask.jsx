@@ -31,35 +31,43 @@ const ViewingTask = (props) => {
   };
 
   return (
-    <div id={task.id} className={css.viewingTask}>
-      <div className={css.taskGroup}>
-        <h4 className={css.name}>{task.name}</h4>
-        <Link to="/" className={css.cancel}>
-          <Cancel />
-        </Link>
-      </div>
-      {edit ? (
-        <form>
-          <textarea
-            name="description"
-            className={css.textarea}
-            placeholder="add a description?"
-            onChange={(event) => editDescription(taskId, event)}
-            value={dataDescription}
-          ></textarea>
-          <button className={css.submit} onClick={handleClick} type="submit">
-            submit
-          </button>
-        </form>
-      ) : (
-        <>
-          <div className={css.description}>{task.description}</div>
-          <button className={css.edit} onClick={handleClick}>
-            edit description
-          </button>
-        </>
-      )}
-    </div>
+    <>
+      {task ? (
+        <div id={task.id} className={css.viewingTask}>
+          <div className={css.taskGroup}>
+            <h4 className={css.name}>{task.name}</h4>
+            <Link to="/" className={css.cancel}>
+              <Cancel />
+            </Link>
+          </div>
+          {edit ? (
+            <form>
+              <textarea
+                name="description"
+                className={css.textarea}
+                placeholder="add a description?"
+                onChange={(event) => editDescription(taskId, event)}
+                value={dataDescription}
+              ></textarea>
+              <button
+                className={css.submit}
+                onClick={handleClick}
+                type="submit"
+              >
+                submit
+              </button>
+            </form>
+          ) : (
+            <>
+              <div className={css.description}>{task.description}</div>
+              <button className={css.edit} onClick={handleClick}>
+                edit description
+              </button>
+            </>
+          )}
+        </div>
+      ) : null}
+    </>
   );
 };
 export default ViewingTask;

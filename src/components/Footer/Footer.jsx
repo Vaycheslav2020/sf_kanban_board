@@ -8,7 +8,7 @@ const Footer = ({ active, finished }) => {
         <span>Finished tasks: {finished}</span>
       </div>
       <div className={css.userInfo}>
-        Kanban board by Vyacheslav, 2023;
+        Kanban board by Vyacheslav, 2023
       </div>
     </footer>
   );
