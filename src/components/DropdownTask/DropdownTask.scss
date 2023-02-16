@@ -1,0 +1,25 @@
+.dropdown {
+  position: relative;
+  margin: 15px 0;
+}
+
+.select {
+  appearance: none;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: inherit;
+  position: relative;
+  padding: 7px 36px 7px 8px;
+  background: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
