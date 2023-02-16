@@ -93,9 +93,31 @@ class App extends React.Component {
   };
 
   deletingTask = (id, event) => {
-    const { data } = this.state
+    const { data } = this.state;
     this.setState({
-      data: deleteTask(data , id),
+      data: deleteTask(data, id),
+    });
+  };
+
+  editDescription = (taskId, event) => {
+    const { target } = event;
+    const value = target.value;
+    const {data} = this.state
+
+    const newDescr = data.map((item) => {
+      return Object.assign(
+        { ...item },
+        { issues: item.issues.map((task) => {
+          if (task.id === taskId) {
+                return Object.assign({...task}, {description: value});
+              }
+              return task;
+        }) }
+      );
+    });
+
+    this.setState({
+      data: newDescr,
     });
   };
 
@@ -112,6 +134,7 @@ class App extends React.Component {
           handleSelect={this.handleSelect}
           onClick={this.onClick}
           deletingTask={this.deletingTask}
+          editDescription={this.editDescription}
         />
         <Footer
           active={this.state.data[0].issues.length}

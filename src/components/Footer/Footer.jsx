@@ -3,12 +3,12 @@ import css from "./Footer.module.scss";
 const Footer = ({ active, finished }) => {
   return (
     <footer className={css.footer}>
-      <div className="task-info">
+      <div>
         <span>Active tasks: {active} </span>
         <span>Finished tasks: {finished}</span>
       </div>
-      <div className="user-info">
-        Kanban board by &lt;NAME&gt;, &lt;YEAR&gt;
+      <div className={css.userInfo}>
+        Kanban board by Vyacheslav, 2023;
       </div>
     </footer>
   );

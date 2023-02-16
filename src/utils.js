@@ -1,15 +1,15 @@
 const filterToMoveTask = (data, title, movingTaskId) => {
-  let moveTask;
+  let taskItem;
   const newData = data.map((item) => {
     item.issues.map((task) => {
       if (task.id === movingTaskId) {
-        return (moveTask = task);
+        return (taskItem = task);
       }
     });
     if (item.title === title) {
       return Object.assign(
         { ...item },
-        { issues: item.issues.concat(moveTask) }
+        { issues: item.issues.concat(taskItem) }
       );
     } else {
       return Object.assign(
