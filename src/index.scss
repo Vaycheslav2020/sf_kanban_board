@@ -2,14 +2,17 @@
 
 * {
   box-sizing: border-box;
-  &::-webkit-scrollbar {
-    width: 12px;
-    background: #ffffff;
-  }
-  &::-webkit-scrollbar-thumb {
-    width: 100%;
-    background: #cbcbcb;
-    border-radius: 5px;
+  @include min_1024 {
+    &::-webkit-scrollbar {
+      width: 12px;
+      background: #ffffff;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: 100%;
+      background: #cbcbcb;
+      border-radius: 5px;
+    }
   }
 }
 

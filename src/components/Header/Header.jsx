@@ -1,12 +1,13 @@
-import css from "./Header.module.scss"
+import css from "./Header.module.scss";
+import User from "../User/User";
 
 const Header = () => {
   return (
     <header className={css.header}>
       <span>Awesome Kanban Board</span>
-      <span>jjhh</span>
+      <User />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
