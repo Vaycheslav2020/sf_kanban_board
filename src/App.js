@@ -4,29 +4,10 @@ import css from "./App.module.scss";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
+import emptyData from "./data-mock.json";
 import { filterToMoveTask, addingTaskFunction, deleteTask } from "./utils";
-
-const emptyData = [
-  {
-    title: "Backlog",
-    issues: []
-  },
-  {
-    title: "Ready",
-    issues: []
-  },
-  {
-    title: "In Progress",
-    issues: []
-  },
-  {
-    title: "Finished",
-    issues: []
-  }
-]
-
-const initialData =
-  JSON.parse(window.localStorage.getItem("data")) || emptyData;
+const localData = JSON.parse(window.localStorage.getItem("data"));
+const initialData = localData ? localData : emptyData;
 
 class App extends React.Component {
   constructor(props) {
@@ -120,17 +101,19 @@ class App extends React.Component {
   editDescription = (taskId, event) => {
     const { target } = event;
     const value = target.value;
-    const {data} = this.state
+    const { data } = this.state;
 
     const newDataSetDescription = data.map((item) => {
       return Object.assign(
         { ...item },
-        { issues: item.issues.map((task) => {
-          if (task.id === taskId) {
-                return Object.assign({...task}, {description: value});
-              }
-              return task;
-        }) }
+        {
+          issues: item.issues.map((task) => {
+            if (task.id === taskId) {
+              return Object.assign({ ...task }, { description: value });
+            }
+            return task;
+          }),
+        }
       );
     });
 
